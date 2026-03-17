@@ -66,7 +66,7 @@ class TickerMapper:
             if self.normalize_name(key) == normalized:
                 return ticker
 
-        if self.is_probable_ticker(name)
+        if self.is_probable_ticker(name):
             return name
 
         logger.warning("Unable to map asset: %s", name)
