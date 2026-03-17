@@ -1,0 +1,8 @@
+[
+{ "ticker": "PETR4", "quantidade": 1000, "financeiro": 35000.0 },
+{ "ticker": "VALE3", "quantidade": 500, "financeiro": 32500.0 },
+{ "ticker": "ITUB4", "quantidade": 200, "financeiro": 6400.0 },
+{ "ticker": "BBDC4", "quantidade": 300, "financeiro": 4200.0 },
+{ "ticker": "MGLU3", "quantidade": 150, "financeiro": 1200.0 },
+{ "ticker": "WEGE3", "quantidade": 400, "financeiro": 22000.0 }
+]

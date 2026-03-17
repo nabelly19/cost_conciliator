@@ -9,11 +9,11 @@ from reconciliation.reconciler import reconcile
 from writers.report_writer import write_report
 
 def main():
-    internal = read_internal_positions("internal_system.json")
-    custodian = read_custodian_extract("custodian_extract.csv")
+    internal = read_internal_positions("./data/input/internal_system.json")
+    custodian = read_custodian_extract("./data/input/custodian_extract.csv")
     mapper = TickerMapper()
     report = reconcile(internal, custodian, mapper)
-    write_report(report, "relatorio_final.csv")
+    write_report(report, "./data/output/relatorio_final.csv")
 
 if __name__ == "__main__":
     main()
