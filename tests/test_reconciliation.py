@@ -1,7 +1,7 @@
 from decimal import Decimal
-from conciliador.features.reconciliation.reconciler import reconcile
-from conciliador.features.models.models import Position, CustodianRecord
-from conciliador.features.mapping.ticker_mapper import TickerMapper
+from conciliator.features.reconciliation.reconciler import reconcile
+from conciliator.features.models.models import Position, CustodianRecord
+from conciliator.features.mapping.ticker_mapper import TickerMapper
 
 def test_quantity_error():
     internal = {
