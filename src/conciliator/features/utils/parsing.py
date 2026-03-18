@@ -20,7 +20,11 @@ def parse_decimal(value: str) -> Decimal:
     if value is None:
         raise InvalidOperation("None value")
 
-    cleaned = value.replace(".","").replace(",",".")
+    value = value.strip()
+    if "," in value:
+        cleaned = value.replace(".", "").replace(",", ".")
+    else:
+        cleaned = value
 
     return Decimal(cleaned)
 

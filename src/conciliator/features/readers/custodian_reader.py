@@ -25,9 +25,9 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
         for row in reader:
             try:
                 record = CustodianRecord(
-                    active_name=row["Active"],
-                    quantity=parse_int(row["Quantity"]),
-                    financial_value=parse_decimal(row["Financial Balance"]),
+                    active_name=row["Ativo"],
+                    quantity=parse_int(row["Quantidade"]),
+                    financial_value=parse_decimal(row["Saldo_Financeiro"]),
                 )
 
                 records.append(record)
@@ -35,6 +35,6 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
             except Exception as e:
                 logger.warning("Skipping invalid row: %s", e)
 
-        logger.info("Loaded %s custodian records", len(records))
+    logger.info("Loaded %s custodian records", len(records))
 
-        return record
+    return record

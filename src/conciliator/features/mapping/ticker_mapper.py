@@ -19,7 +19,7 @@ class TickerMapper:
     Handles mapping between custodian names and internal tickers.
     """
 
-    def __int__(self) -> None:
+    def __init__(self) -> None:
 
         self.explicit_map: Dict[str, str] = {
             "PETROLEO BRASILEIRO S.A.": "PETR4",
@@ -36,7 +36,7 @@ class TickerMapper:
 
         name = name.upper()
 
-        name = re.sub(r"S\.A\.", "", name)
+        name = re.sub(r"S\.\s*A\.", "", name)
         name = re.sub(r"HOLDING", "", name)
 
         name = re.sub(r"\s+", " ", name)

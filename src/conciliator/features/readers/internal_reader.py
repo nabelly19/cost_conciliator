@@ -38,10 +38,10 @@ def read_internal_positions(path: str) -> Dict[str, Position]:
 
         positions[ticker] = Position(
             ticker=ticker,
-            quantity=int(record["Quantity"]),
-            financial_value=Decimal(str(record["Financial"]))
+            quantity=int(record["quantidade"]),
+            financial_value=Decimal(str(record["financeiro"]))
         )
 
-        logger.info("Loaded %s positions from internal system", len(positions))
+    logger.info("Loaded %s positions from internal system", len(positions))
 
-        return positions
+    return positions
