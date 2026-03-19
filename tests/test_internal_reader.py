@@ -27,7 +27,7 @@ def test_missing_fields(caplog, tmp_path):
     assert len(result) == 0
     assert "Invalid internal record skipped" in caplog.text
 
-    def test_invalid_quantity(caplog, tmp_path):
+def test_invalid_quantity(caplog, tmp_path):
     file = tmp_path / "data.json"
 
     file.write_text("""
@@ -41,7 +41,7 @@ def test_missing_fields(caplog, tmp_path):
     assert len(result) == 0
     assert "Invalid internal record skipped" in caplog.text
 
-    def test_negative_values(caplog, tmp_path):
+def test_negative_values(caplog, tmp_path):
     file = tmp_path / "data.json"
 
     file.write_text("""
@@ -55,7 +55,7 @@ def test_missing_fields(caplog, tmp_path):
     assert len(result) == 0
     assert "Negative quantity" in caplog.text
 
-    def test_duplicate_ticker(caplog, tmp_path):
+def test_duplicate_ticker(caplog, tmp_path):
     file = tmp_path / "data.json"
 
     file.write_text("""
@@ -71,4 +71,3 @@ def test_missing_fields(caplog, tmp_path):
     assert result["PETR4"].quantity == 200
     assert "Duplicate ticker" in caplog.text
 
-    

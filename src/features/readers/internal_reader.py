@@ -70,7 +70,7 @@ def read_internal_positions(path: str) -> Dict[str, Position]:
 
         except (ValueError, InvalidOperation, TypeError) as e:
             logger.warning(
-                "Invalid internal record skipped",
+                "%s: Invalid internal record skipped", str(e),
                 extra={"index": idx, "record": record, "error": str(e)}
             )
 

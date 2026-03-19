@@ -53,7 +53,7 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
 
             except Exception as e:
                 logger.warning(
-                    "Invalid custodian row skipped",
+                    "%s: Invalid custodian row skipped", str(e),
                     extra={"index": idx, "row": row, "error": str(e)}
                 )
 
