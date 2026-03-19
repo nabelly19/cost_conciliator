@@ -5,9 +5,9 @@ Reads the custodian CSV extract.
 import csv
 from typing import List
 
-from models.models import CustodianRecord
-from utils.parsing import parse_decimal, parse_int
-from utils.logging_config import get_logger
+from features.models.models import CustodianRecord
+from features.utils.parsing import parse_decimal, parse_int
+from features.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
 
@@ -37,4 +37,4 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
 
     logger.info("Loaded %s custodian records", len(records))
 
-    return record
+    return records

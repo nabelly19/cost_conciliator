@@ -32,7 +32,7 @@ tests/
 
 ### Run reconciliation
 ```bash
-cd src && PYTHONPATH=/home/runner/workspace/src:/home/runner/workspace/src/conciliator/features python3 main.py
+cd src; PYTHONPATH=/home/runner/workspace/src:/home/runner/workspace/src/conciliator/features python3 main.py
 ```
 
 ### Run tests

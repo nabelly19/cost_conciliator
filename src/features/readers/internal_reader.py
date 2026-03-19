@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import Dict
 from decimal import Decimal
 
-from models.models import Position
-from utils.logging_config import get_logger
+from features.models.models import Position
+from features.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
 
