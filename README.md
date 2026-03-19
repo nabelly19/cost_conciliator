@@ -1,38 +1,62 @@
+## Cost Conciliator
+
+A Python-based reconciliation tool designed to compare internal system positions with custodian records, identifying discrepancies in quantity and financial values.
+
 ## Project Structure
 ```
-src/
-  main.py                          # Entry point - orchestrates the full flow
-  conciliator/features/
-    mapping/ticker_mapper.py       # Maps custodian asset names to internal tickers
-    models/models.py               # Data models: Position, CustodianRecord, ReportEntry
-    readers/
-      internal_reader.py           # Reads internal JSON positions file
-      custodian_reader.py          # Reads custodian CSV extract
-    reconciliation/reconciler.py   # Core reconciliation engine
-    utils/
-      logging_config.py            # Centralized logging setup
-      parsing.py                   # Safe numeric parsing (handles BR/EN formats)
-    writers/report_writer.py       # Writes CSV reconciliation report
-  data/
-    input/
-      internal_system.json         # Internal system positions (Portuguese field names)
-      custodian_extract.csv        # Custodian extract (Portuguese column headers)
-    output/
-      relatorio_final.csv          # Generated reconciliation report
-tests/
-  test_mapper.py
-  test_reconciliation.py
+cost_conciliator/ 
+│
+├── src/ 
+│ ├── main.py 
+│ ├── features/ 
+│ │ ├── mapping/ 
+│ │ ├── models/ 
+│ │ ├── readers/ 
+│ │ ├── reconciliation/ 
+│ │ ├── utils/ 
+│ │ └── writers/ 
+│ └── data/ 
+│   ├── input/ 
+│   └── output/ 
+|
+├── tests/ 
+├── setup.py 
+├── README.md 
+└── pytest.ini
+
 ```
 
-## Setup & Running
+## Requirements
 
-- **Language**: Python 3.12
-- **Testing**: pytest (installed via uv)
-- **Python path**: `src` and `src/conciliator/features` are both on the path (configured in `pytest.ini`)
+- **Language**: Python 3.10+
+- **Package Manager**: pip
 
-### Run reconciliation
+### Install Dependencies
+
+Install the project in editable mode:
 ```bash
-cd src; PYTHONPATH=/home/runner/workspace/src:/home/runner/workspace/src/conciliator/features python3 main.py
+pip install -e .
+```
+
+## Input Data
+
+Place your input files in:
+
+```bash
+src/data/input/
+```
+
+### Required files:
+
+1. Internal System (JSON)
+2. Custodian Extract (CSV)
+
+## Running the Application
+
+From the project root directory, run:
+
+```bash
+python -m src.main
 ```
 
 ### Run tests
