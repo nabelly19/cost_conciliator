@@ -1,5 +1,5 @@
 import pytest
-from features.readers.internal_reader import read_internal_positions
+from conciliator.infrastructure.readers.internal_reader import read_internal_positions
 
 
 def test_internal_file_not_found():

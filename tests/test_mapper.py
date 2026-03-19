@@ -1,4 +1,4 @@
-from features.mapping.ticker_mapper import TickerMapper
+from conciliator.domain.mapping.ticker_mapper import TickerMapper
 
 def test_explicit_mapping():
     mapper = TickerMapper()

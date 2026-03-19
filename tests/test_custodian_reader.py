@@ -1,5 +1,5 @@
 import pytest
-from features.readers.custodian_reader import read_custodian_extract
+from conciliator.infrastructure.readers.custodian_reader import read_custodian_extract
 
 
 def test_invalid_csv_schema(tmp_path):

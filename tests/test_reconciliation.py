@@ -1,7 +1,7 @@
 from decimal import Decimal
-from features.reconciliation.reconciler import reconcile
-from features.models.models import Position, CustodianRecord
-from features.mapping.ticker_mapper import TickerMapper
+from conciliator.domain.services.reconciliation.reconciler import reconcile
+from conciliator.domain.models.models import Position, CustodianRecord
+from conciliator.domain.mapping.ticker_mapper import TickerMapper
 
 def test_quantity_error():
     internal = {

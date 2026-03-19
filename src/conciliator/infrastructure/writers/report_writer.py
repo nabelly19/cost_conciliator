@@ -5,7 +5,7 @@ CSV report writer.
 import csv
 from typing import List
 
-from features.models.models import ReportEntry
+from conciliator.domain.models.models import ReportEntry
 
 def write_report(rows: List[ReportEntry], path: str) -> None:
     with open(path, "w", newline="", encoding="utf-8") as f:

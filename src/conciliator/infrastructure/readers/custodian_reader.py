@@ -5,9 +5,9 @@ Reads the custodian CSV extract.
 import csv
 from typing import List
 
-from features.models.models import CustodianRecord
-from features.utils.parsing import parse_decimal, parse_int
-from features.utils.logging_config import get_logger
+from conciliator.domain.models.models import CustodianRecord
+from conciliator.utils.parsing import parse_decimal, parse_int
+from conciliator.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
 
@@ -24,7 +24,6 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
 
         reader = csv.DictReader(f)
 
-        # --- validação de schema ---
         if not REQUIRED_COLUMNS.issubset(set(reader.fieldnames or [])):
             raise ValueError("Invalid CSV schema")
 
@@ -36,7 +35,6 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
                 quantity = parse_int(row["Quantidade"])
                 financial = parse_decimal(row["Saldo_Financeiro"])
 
-                # --- validações de negócio ---
                 if quantity < 0:
                     raise ValueError("Negative quantity")
 

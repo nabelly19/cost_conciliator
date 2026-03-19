@@ -10,7 +10,7 @@ Implements heuristic fallback matching.
 import re
 from typing import Optional, Dict
 
-from features.utils.logging_config import get_logger
+from conciliator.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
 
