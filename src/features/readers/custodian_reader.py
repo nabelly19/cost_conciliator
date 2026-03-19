@@ -11,6 +11,8 @@ from features.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
 
+REQUIRED_COLUMNS = {"Ativo", "Quantidade", "Saldo_Financeiro"}
+
 def read_custodian_extract(path: str) -> List[CustodianRecord]:
     """
     Reads the custodian CSV extract.
@@ -22,19 +24,39 @@ def read_custodian_extract(path: str) -> List[CustodianRecord]:
 
         reader = csv.DictReader(f)
 
-        for row in reader:
+        # --- validação de schema ---
+        if not REQUIRED_COLUMNS.issubset(set(reader.fieldnames or [])):
+            raise ValueError("Invalid CSV schema")
+
+        for idx, row in enumerate(reader):
+
             try:
-                record = CustodianRecord(
-                    active_name=row["Ativo"],
-                    quantity=parse_int(row["Quantidade"]),
-                    financial_value=parse_decimal(row["Saldo_Financeiro"]),
+                name = row["Ativo"].strip()
+
+                quantity = parse_int(row["Quantidade"])
+                financial = parse_decimal(row["Saldo_Financeiro"])
+
+                # --- validações de negócio ---
+                if quantity < 0:
+                    raise ValueError("Negative quantity")
+
+                if financial < 0:
+                    raise ValueError("Negative financial value")
+
+                records.append(
+                    CustodianRecord(
+                        active_name=name,
+                        quantity=quantity,
+                        financial_value=financial,
+                    )
                 )
 
-                records.append(record)
-
             except Exception as e:
-                logger.warning("Skipping invalid row: %s", e)
+                logger.warning(
+                    "Invalid custodian row skipped",
+                    extra={"index": idx, "row": row, "error": str(e)}
+                )
 
-    logger.info("Loaded %s custodian records", len(records))
+    logger.info("Loaded %s valid custodian records", len(records))
 
     return records

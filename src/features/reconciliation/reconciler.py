@@ -10,16 +10,15 @@ from features.mapping.ticker_mapper import TickerMapper
 
 TOLERANCE = Decimal("0.01")
 
+
 def reconcile(
     internal: Dict[str, Position],
     custodian: List[CustodianRecord],
-    mapper: TickerMapper
+    mapper: TickerMapper,
 ) -> List[ReportEntry]:
-
     custodian_map = {}
 
     for record in custodian:
-
         ticker = mapper.map_to_ticker(record.active_name)
 
         if ticker is None:
@@ -36,7 +35,7 @@ def reconcile(
                     ticker=ticker,
                     status="FALTANTE_NO_BANCO",
                     divergence_quantity=-position.quantity,
-                    divergence_value=-position.financial_value
+                    divergence_value=-position.financial_value,
                 )
             )
 
@@ -49,10 +48,10 @@ def reconcile(
 
         if dq != 0:
             status = "ERRO_QUANTIDADE"
-        
+
         elif abs(dv) >= TOLERANCE:
             status = "ERRO_FINANCEIRO"
-        
+
         else:
             status = "OK"
 
@@ -61,8 +60,19 @@ def reconcile(
                 ticker=ticker,
                 status=status,
                 divergence_quantity=dq,
-                divergence_value=dv
+                divergence_value=dv,
             )
         )
+
+    for ticker, custodian_record in custodian_map.items():
+        if ticker not in internal:
+            report.append(
+                ReportEntry(
+                    ticker=ticker,
+                    status="NAO_CADASTRADO",
+                    divergence_quantity=custodian_record.quantity,
+                    divergence_value=custodian_record.financial_value,
+                )
+            )
 
     return report
